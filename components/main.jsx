@@ -3,8 +3,7 @@ import ThreeDModel from "./3dMode";
 
 const Main = () => {
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      Main
+    <div className="w-full h-screen flex justify-center items-center ">
       <ThreeDModel></ThreeDModel>
     </div>
   );
