@@ -4,7 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 
 function Model({ mouse }) {
-  const gltf = useGLTF("/models/hi.glb");
+  const gltf = useGLTF("/models/Untitled.glb");
   const ref = useRef();
 
   useFrame(() => {
@@ -20,7 +20,7 @@ function Model({ mouse }) {
       if (window.innerWidth < 640) {
         gltf.scene.position.set(-3.5, -2, -5); // Center for small screens
       } else {
-        gltf.scene.position.set(-3.5, -1, 0); // Default for larger screens
+        gltf.scene.position.set(-3.8, -1, 0); // Default for larger screens
       }
     };
     updatePosition();
@@ -83,7 +83,13 @@ const ThreeDModel = () => {
             castShadow
           />
           <directionalLight
-            position={[mouse.current.x * 10, 5 + mouse.current.y * 5, -10000]}
+            position={[mouse.current.x * 10, 5 + mouse.current.y * -5, -100]}
+            intensity={1}
+            castShadow
+          />
+          <directionalLight position={[10, 100, 50]} intensity={1} castShadow />
+          <directionalLight
+            position={[100, -100, 50]}
             intensity={1}
             castShadow
           />
