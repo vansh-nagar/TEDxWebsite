@@ -4,7 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 
 function Model({ mouse }) {
-  const gltf = useGLTF("/models/hii.glb");
+  const gltf = useGLTF("/models/hi.glb");
   const ref = useRef();
 
   useFrame(() => {
@@ -13,6 +13,20 @@ function Model({ mouse }) {
       ref.current.rotation.x = mouse.current.y * 0.1;
     }
   });
+
+  // Set initial position
+  React.useEffect(() => {
+    const updatePosition = () => {
+      if (window.innerWidth < 640) {
+        gltf.scene.position.set(-3.5, -2, -5); // Center for small screens
+      } else {
+        gltf.scene.position.set(-3.5, -1, 0); // Default for larger screens
+      }
+    };
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+    return () => window.removeEventListener("resize", updatePosition);
+  }, [gltf.scene]);
 
   return <primitive ref={ref} object={gltf.scene} scale={3} />;
 }
@@ -62,10 +76,22 @@ const ThreeDModel = () => {
       {/* 2D maal */}
       <div className="w-full h-full flex-1  flex justify-center ">
         <Canvas>
-          <ambientLight intensity={1} />
-          <directionalLight position={[10, 1, 30]} />
-          <directionalLight position={[-10, 5, -30]} />
-          <OrbitControls enablePan={true} enableRotate={false} />
+          <ambientLight intensity={0.6} />
+          <directionalLight
+            position={[mouse.current.x * 10, 5 + mouse.current.y * 5, 10000]}
+            intensity={1}
+            castShadow
+          />
+          <directionalLight
+            position={[mouse.current.x * 10, 5 + mouse.current.y * 5, -10000]}
+            intensity={1}
+            castShadow
+          />
+          <OrbitControls
+            enablePan={true}
+            enableRotate={false}
+            enableZoom={false}
+          />
           <Model position={[0, -2.5, 0]} mouse={mouse} />
         </Canvas>
       </div>
