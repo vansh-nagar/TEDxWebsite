@@ -18,6 +18,10 @@ export const TedxModel = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
   return (
-    <primitive ref={meshRef} object={gltf.scene} position={[-1, -0.4, 0]} />
+    <primitive
+      ref={meshRef}
+      object={gltf.scene}
+      position={[-1.35, -0.35, 0.6]}
+    />
   );
 };
