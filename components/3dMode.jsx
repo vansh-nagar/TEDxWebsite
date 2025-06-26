@@ -74,7 +74,7 @@ const AboutUs = () => {
   return (
     <div
       ref={mainRef}
-      className="flex flex-col justify-center items-center w-full bg-zinc-950 pt-[100px]"
+      className="flex flex-col justify-center items-center w-full bg-zinc-950 pt-[100px] p-4"
     >
       <div className="w-full flex flex-col text-white relative">
         <div className="flex justify-between items-end">
@@ -112,7 +112,7 @@ const AboutUs = () => {
           style={{ pointerEvents: "none" }} // disables pointer events for better perf
         >
           <Canvas
-            camera={{ position: [0, 0, 2] }}
+            camera={{ position: [0, 0] }}
             frameloop="demand" // only render on changes
             gl={{ powerPreference: "high-performance", antialias: false }}
             dpr={[1, 1.5]} // lower device pixel ratio for less GPU usage

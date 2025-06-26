@@ -140,3 +140,7 @@ html {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
+.gradient {
+  background-color: #27103450;
+}
