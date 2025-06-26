@@ -1,113 +1,143 @@
 "use client";
-import React, { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import React, { useRef, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+import { TedxModel } from "./model/tedxmodes";
+import { Environment } from "@react-three/drei";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AboutUsDiv from "./ui/aboutUsDiv";
+import { aboutUsData } from "./data/aboutUsData";
+import { useGSAP } from "@gsap/react";
+import Toru from "./model/toru";
+import { AdaptiveDpr } from "@react-three/drei";
 
-function Model({ mouse }) {
-  const gltf = useGLTF("/models/Untitled.glb");
-  const ref = useRef();
+gsap.registerPlugin(ScrollTrigger);
 
-  useFrame(() => {
-    if (ref.current && mouse.current) {
-      ref.current.rotation.y = mouse.current.x * 0.2;
-      ref.current.rotation.x = mouse.current.y * 0.1;
-    }
-  });
+const AboutUs = () => {
+  const mainRef = useRef(null);
+  const model = useRef(null);
+  const level2 = useRef(null);
+  const aboutUsDiv = useRef(null);
+  const video = useRef(null);
 
-  // Set initial position
-  React.useEffect(() => {
-    const updatePosition = () => {
-      if (window.innerWidth < 640) {
-        gltf.scene.position.set(-3.5, -2, -5); // Center for small screens
-      } else {
-        gltf.scene.position.set(-3.8, -1, 0); // Default for larger screens
+  useGSAP(() => {
+    if (!mainRef.current) return;
+
+    gsap.from(video.current, {
+      y: "100%",
+      duration: 1,
+      onComplete: () => {
+        if (video.current) {
+          video.current.play();
+        }
+      },
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: level2.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: 1,
+      },
+    });
+
+    tl.fromTo(
+      model.current,
+      { x: "-100vw" },
+      {
+        x: "100vw",
+        ease: "none",
       }
+    );
+
+    gsap.from(aboutUsDiv.current, {
+      y: 100,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: level2.current,
+        start: "top 80%",
+        end: "bottom 20%",
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-    updatePosition();
-    window.addEventListener("resize", updatePosition);
-    return () => window.removeEventListener("resize", updatePosition);
-  }, [gltf.scene]);
+  }, []);
 
-  return <primitive ref={ref} object={gltf.scene} scale={3} />;
-}
-
-const ThreeDModel = () => {
-  const mouse = useRef({ x: 0, y: 0 });
-
-  const handleMouseMove = (e) => {
-    mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.current.y = (e.clientY / window.innerHeight) * 2 - 1;
-  };
+  if (!aboutUsDiv.current) aboutUsDiv.current = [];
 
   return (
     <div
-      className="flex flex-col items-center justify-between px-12 w-full py-8 h-screen relative"
-      onMouseMove={handleMouseMove}
+      ref={mainRef}
+      className="flex flex-col justify-center items-center w-full bg-zinc-950 pt-[100px]"
     >
-      {/* gradient */}
-      <div
-        className="absolute inset-0 -z-10 pointer-events-none"
-        aria-hidden="true"
-      >
-        <svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 800 800"
-          className="w-full h-full"
-        >
-          <defs>
-            <radialGradient id="blobGradient" cx="50%" cy="50%" r="70%">
-              <stop offset="0%" stopColor="#f2f2f2" stopOpacity="0.7" />
-              <stop offset="50%" stopColor="#8e1f29" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#8e1f29" stopOpacity="0.3" />
-            </radialGradient>
-          </defs>
-          <ellipse
-            cx="400"
-            cy="400"
-            rx="340"
-            ry="320"
-            fill="url(#blobGradient)"
-            filter="blur(80px)"
-          />
-        </svg>
-      </div>
+      <div className="w-full flex flex-col text-white relative">
+        <div className="flex justify-between items-end">
+          <div className="font-semibold text-red-600 text-[10vw] max-sm:text-[5vw] max-sm:m-0 -mb-12">
+            TEDx
+            <span className="text-white text-6xl max-sm:text-[2.5vw]">
+              BIT JAIPUR
+            </span>
+          </div>
+          <div className="mr-6 max-sm:text-[2.5vw] max-sm:mx-1">
+            Where vision meets voice
+          </div>
+        </div>
 
-      {/* 2D maal */}
-      <div className="w-full h-full flex-1  flex justify-center ">
-        <Canvas>
-          <ambientLight intensity={0.6} />
-          <directionalLight
-            position={[mouse.current.x * 10, 5 + mouse.current.y * 5, 10000]}
-            intensity={1}
-            castShadow
-          />
-          <directionalLight
-            position={[mouse.current.x * 10, 5 + mouse.current.y * -5, -100]}
-            intensity={1}
-            castShadow
-          />
-          <directionalLight position={[10, 100, 50]} intensity={1} castShadow />
-          <directionalLight
-            position={[100, -100, 50]}
-            intensity={1}
-            castShadow
-          />
-          <OrbitControls
-            enablePan={true}
-            enableRotate={false}
-            enableZoom={false}
-          />
-          <Model position={[0, -2.5, 0]} mouse={mouse} />
-        </Canvas>
+        <div className="w-full max-sm:mb-4">
+          <video
+            ref={video}
+            muted
+            loop
+            className="w-full h-full border-[20px] border-white/10 object-cover gradient md:rounded-3xl shadow-xl backdrop-blur-xs "
+            src="http://res.cloudinary.com/dz12pywzs/video/upload/v1750933086/s7v8n1vywgbsszquz216.mov"
+          ></video>
+          <button className=" bg-white px-5 hover:shadow-2xs shadow-red-500 text-red hover:scale-105 transition-all duration-150  py-3 rounded-md text-black relative -translate-x-1/2 bottom-20 left-1/2">
+            Speaker call
+          </button>
+        </div>
       </div>
-      <div className="mb-6 z-10">
-        <button className="px-4 py-2 bg-black text-white rounded-xl">
-          Explore More
-        </button>
+      <div
+        ref={level2}
+        className="flex justify-center items-center h-screen max-sm:h-full max-sm:gap-4 w-full overflow-hidden gap-4 max-md:flex-wrap flex-row relative"
+      >
+        <div
+          ref={model}
+          className="absolute max-sm:hidden h-screen w-full flex items-center justify-center"
+          style={{ pointerEvents: "none" }} // disables pointer events for better perf
+        >
+          <Canvas
+            camera={{ position: [0, 0, 2] }}
+            frameloop="demand" // only render on changes
+            gl={{ powerPreference: "high-performance", antialias: false }}
+            dpr={[1, 1.5]} // lower device pixel ratio for less GPU usage
+          >
+            <ambientLight intensity={2} />
+            <TedxModel />
+            <Environment preset="sunset" />
+            <AdaptiveDpr pixelated />
+          </Canvas>
+        </div>
+        {aboutUsData.map((item, index) => (
+          <AboutUsDiv
+            ref={(el) => (aboutUsDiv.current[index] = el)}
+            key={index}
+            hv1={item.hv1}
+            hv2={item.hv2}
+            dv1={item.dv1}
+            dv2={item.dv2}
+            p={item.p}
+            className={index === 1 ? "z-10" : ""}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-export default ThreeDModel;
+export default AboutUs;

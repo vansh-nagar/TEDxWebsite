@@ -1,12 +1,18 @@
 "use client";
-import React from "react";
-import { FaInstagram, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import {
+  RiGithubFill,
+  RiInstagramLine,
+  RiLineFill,
+  RiLinkedinLine,
+  RiMailLine,
+} from "@remixicon/react";
+import React from "react"; // import { FaInstagram, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer
       id="footer"
-      className="bg-gradient-to-r from-black via-red-900 to-black text-white px-6 py-12 md:px-20 flex flex-col md:flex-row justify-between items-start gap-10"
+      className="gradient rounded-2xl md:rounded-3xl shadow-xl backdrop-blur-xs  text-white px-6 py-12 md:px-20 flex flex-col md:flex-row justify-between items-start gap-10"
     >
       {/* Left Side */}
       <div className="space-y-4 text-left">
@@ -19,17 +25,28 @@ const Footer = () => {
         </p>
         <p className="text-sm">©2025 All Rights Reserved</p>
         <div className="flex space-x-5 text-2xl mt-3">
-          <a href="https://www.linkedin.com/company/tedxbitjaipur/" target="_blank" rel="noreferrer">
-            <FaLinkedin className="hover:text-red-500 transition-all" />
+          <a
+            href="https://www.linkedin.com/company/tedxbitjaipur/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {/* <FaLinkedin className="hover:text-red-500 transition-all" /> */}
+            <RiLinkedinLine className="hover:text-red-500 transition-all" />
           </a>
-          <a href="https://www.instagram.com/tedxbitjaipur/" target="_blank" rel="noreferrer">
-            <FaInstagram className="hover:text-red-500 transition-all" />
+          <a
+            href="https://www.instagram.com/tedxbitjaipur/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {/* <FaInstagram className="hover:text-red-500 transition-all" /> */}
+            <RiInstagramLine />
           </a>
           <a href="https://github.com" target="_blank" rel="noreferrer">
-            <FaGithub className="hover:text-red-500 transition-all" />
+            {/* <FaGithub className="hover:text-red-500 transition-all" /> */}
+            <RiGithubFill />
           </a>
           <a href="mailto:tcontact@tedxbitjaipur.com">
-            <FaEnvelope className="hover:text-red-500 transition-all" />
+            <RiMailLine />
           </a>
         </div>
       </div>
