@@ -1,9 +1,12 @@
-import Main from "@/components/main";
-
+import VideoSection from "./VideoSection";
+import OurTeam from "./OurTeam";
+import Navbar from "../components/navbar";
 export default function Home() {
   return (
     <>
-      <Main></Main>
+      <Navbar />
+      <VideoSection />
+      <OurTeam />
     </>
   );
 }

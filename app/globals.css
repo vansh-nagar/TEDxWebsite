@@ -120,3 +120,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar {
+  width: 8px; /* You can change width */
+}
+
+/* Scrollbar Thumb (the part you drag) */
+::-webkit-scrollbar-thumb {
+  background-color: #e71515; /* Tailwind's red-600 */
+  border-radius: 9999px;
+}
+
+/* Scrollbar Track Background */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
