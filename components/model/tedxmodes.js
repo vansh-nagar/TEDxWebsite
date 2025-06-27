@@ -21,13 +21,7 @@ export const TedxModel = () => {
     <primitive
       ref={meshRef}
       object={gltf.scene}
-      position={[-1.35, -0.35, 0.6]}
-      Slightly
-      rotate
-      for
-      a
-      better
-      angle
+      position={[-1.45, -0.38, 0.65]}
     />
   );
 };

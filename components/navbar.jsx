@@ -5,12 +5,7 @@ import { useGSAP } from "@gsap/react";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 
 import React, { useState } from "react";
-import {
-  RiClockwise2Line,
-  RiCloseLargeFill,
-  RiCloseLine,
-  RiMenuLine,
-} from "@remixicon/react";
+import { RiCloseLargeFill, RiMenuLine } from "@remixicon/react";
 // import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
@@ -58,10 +53,10 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar Container */}
-      <div className="flex justify-center p-4 max-sm:p-0 ">
+      <div className="flex justify-center p-4 max-sm:p-0  ">
         <div
           ref={box}
-          className="w-20 h-20   flex justify-between p-6 items-center top-4 fixed z-50 gradient  md:rounded-3xl shadow-xl backdrop-blur-xs "
+          className="w-20 h-20   flex justify-between p-6 items-center sm:top-4 fixed z-50 gradient  md:rounded-3xl shadow-xl backdrop-blur-xs "
         >
           <div className=" link flex items-center font-bold text-xl text-white opacity-0">
             <span className=" link text-red-500">

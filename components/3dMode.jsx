@@ -19,11 +19,12 @@ const AboutUs = () => {
   const level2 = useRef(null);
   const aboutUsDiv = useRef(null);
   const video = useRef(null);
+  const videoContainer = useRef(null);
 
   useGSAP(() => {
     if (!mainRef.current) return;
 
-    gsap.from(video.current, {
+    gsap.from(videoContainer.current, {
       y: "100%",
       duration: 1,
       onComplete: () => {
@@ -74,48 +75,57 @@ const AboutUs = () => {
   return (
     <div
       ref={mainRef}
-      className="flex flex-col justify-center items-center w-full bg-zinc-950 pt-[100px] p-4"
+      className="flex flex-col justify-center items-center w-full pt-[100px] p-4"
     >
       <div className="w-full flex flex-col text-white relative">
-        <div className="flex justify-between items-end">
-          <div className="font-semibold text-red-600 text-[10vw] max-sm:text-[5vw] max-sm:m-0 -mb-12">
+        <div className="sm:hidden h-screen w-full  absolute bottom-0 left-0 ">
+          <Toru />
+        </div>
+        <div className="flex  sm:flex-row justify-between items-end gap-2">
+          <div className="font-semibold text-red-600 text-[10vw] sm:text-[5vw] max-sm:-m-2 -mb-5 ">
             TEDx
-            <span className="text-white text-6xl max-sm:text-[2.5vw]">
+            <span className="text-white text-3xl sm:text-6xl max-sm:text-[2.5vw]">
               BIT JAIPUR
             </span>
           </div>
-          <div className="mr-6 max-sm:text-[2.5vw] max-sm:mx-1">
+          <div className="mr-0 sm:mr-6 text-base sm:text-lg max-sm:text-[2.5vw] max-sm:mx-1">
             Where vision meets voice
           </div>
         </div>
 
-        <div className="w-full max-sm:mb-4">
+        <div
+          ref={videoContainer}
+          className="gradient mb-4 rounded-2xl sm:rounded-3xl"
+        >
           <video
             ref={video}
             muted
             loop
-            className="w-full h-full border-[20px] border-white/10 object-cover gradient md:rounded-3xl shadow-xl backdrop-blur-xs "
+            playsInline
+            className="w-full h-[40vh] sm:h-[60vh] md:h-[90vh] object-cover gradient rounded-t-2xl sm:rounded-t-3xl shadow-xl backdrop-blur-xs"
             src="http://res.cloudinary.com/dz12pywzs/video/upload/v1750933086/s7v8n1vywgbsszquz216.mov"
           ></video>
-          <button className=" bg-white px-5 hover:shadow-2xs shadow-red-500 text-red hover:scale-105 transition-all duration-150  py-3 rounded-md text-black relative -translate-x-1/2 bottom-20 left-1/2">
+
+          <button className="bg-white/10 cursor-pointer w-full px-5 py-3 rounded-b-2xl sm:rounded-b-3xl text-white transition-all duration-500 hover:shadow-2xs hover:shadow-red-500">
             Speaker call
           </button>
         </div>
       </div>
       <div
         ref={level2}
-        className="flex justify-center items-center h-screen max-sm:h-full max-sm:gap-4 w-full overflow-hidden gap-4 max-md:flex-wrap flex-row relative"
+        className="flex flex-col md:flex-row justify-center items-center min-h-[60vh] md:h-screen w-full overflow-hidden gap-4 relative"
       >
         <div
           ref={model}
-          className="absolute max-sm:hidden h-screen w-full flex items-center justify-center"
-          style={{ pointerEvents: "none" }} // disables pointer events for better perf
+          className="absolute hidden md:flex h-full w-full items-center justify-center"
+          style={{ pointerEvents: "none" }}
         >
           <Canvas
             camera={{ position: [0, 0, 1] }}
-            frameloop="demand" // only render on changes
+            frameloop="demand"
             gl={{ powerPreference: "high-performance", antialias: false }}
-            dpr={[1, 1.5]} // lower device pixel ratio for less GPU usage
+            dpr={[1, 1.5]}
+            style={{ width: "100%", height: "100%" }}
           >
             <ambientLight intensity={2} />
             <TedxModel />
@@ -123,7 +133,7 @@ const AboutUs = () => {
             <AdaptiveDpr pixelated />
           </Canvas>
         </div>
-        {/* {aboutUsData.map((item, index) => (
+        {aboutUsData.map((item, index) => (
           <AboutUsDiv
             ref={(el) => (aboutUsDiv.current[index] = el)}
             key={index}
@@ -132,9 +142,9 @@ const AboutUs = () => {
             dv1={item.dv1}
             dv2={item.dv2}
             p={item.p}
-            className={index === 1 ? "z-10" : ""}
+            className={`w-full md:w-[30%] ${index === 1 ? "z-10" : ""}`}
           />
-        ))} */}
+        ))}
       </div>
     </div>
   );

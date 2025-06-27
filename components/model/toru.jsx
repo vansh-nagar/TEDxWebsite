@@ -3,22 +3,22 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { AsciiRenderer } from "@react-three/drei";
 import { Suspense, useRef } from "react";
-import { AdaptiveDpr } from "@react-three/drei";
 
 export default function Toru() {
   return (
-    <div className="overflow-hidden border-red-500 h-screen w-full absolute -top-32">
+    <div className=" overflow-hidden border-red-500  w-full h-screen">
       <Canvas>
-        <AdaptiveDpr pixelated />
-
         <color attach="background" args={["black"]} />
         <ambientLight intensity={1} />
         <directionalLight position={[5, 5, 5]} />
-        <Suspense fallback={null}>
-          {" "}
-          <Knot />
-        </Suspense>
-        <AsciiRenderer fgColor="white" bgColor="transparent" />
+
+        <AsciiRenderer
+          fgColor="white"
+          bgColor="transparent"
+          resolution={0.3}
+          characters=" .:-+*=%@#"
+        />
+        <Knot />
       </Canvas>
     </div>
   );
@@ -33,7 +33,7 @@ function Knot() {
   });
   return (
     <mesh ref={ref}>
-      <torusKnotGeometry args={[1, 0.3, 128, 32]} />
+      <torusKnotGeometry args={[0.8, 0.25, 100, 5]} />
       <meshStandardMaterial color="red" />
     </mesh>
   );

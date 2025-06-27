@@ -125,22 +125,16 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Scrollbar Track */
-::-webkit-scrollbar {
-  width: 8px; /* You can change width */
-}
-
-/* Scrollbar Thumb (the part you drag) */
-::-webkit-scrollbar-thumb {
-  background-color: #e71515; /* Tailwind's red-600 */
-  border-radius: 9999px;
-}
-
-/* Scrollbar Track Background */
-::-webkit-scrollbar-track {
-  background: transparent;
+body {
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-color-1, #b90e50),
+    var(--gradient-color-2, #032e46),
+    var(--gradient-color-3, #151525),
+    var(--gradient-color-4, #0f3b5e)
+  );
 }
 
 .gradient {
-  background-color: #27103450;
+  background-color: rgba(255, 255, 255, 0.088);
 }
