@@ -112,7 +112,7 @@ const AboutUs = () => {
           style={{ pointerEvents: "none" }} // disables pointer events for better perf
         >
           <Canvas
-            camera={{ position: [0, 0] }}
+            camera={{ position: [0, 0, 1] }}
             frameloop="demand" // only render on changes
             gl={{ powerPreference: "high-performance", antialias: false }}
             dpr={[1, 1.5]} // lower device pixel ratio for less GPU usage
@@ -123,7 +123,7 @@ const AboutUs = () => {
             <AdaptiveDpr pixelated />
           </Canvas>
         </div>
-        {aboutUsData.map((item, index) => (
+        {/* {aboutUsData.map((item, index) => (
           <AboutUsDiv
             ref={(el) => (aboutUsDiv.current[index] = el)}
             key={index}
@@ -134,7 +134,7 @@ const AboutUs = () => {
             p={item.p}
             className={index === 1 ? "z-10" : ""}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );
