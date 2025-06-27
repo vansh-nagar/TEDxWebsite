@@ -3,7 +3,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useRef, useEffect } from "react";
 
 export const TedxModel = () => {
-  const gltf = useLoader(GLTFLoader, "/models/Untitled.glb");
+  const gltf = useLoader(GLTFLoader, "/models/mod.glb");
   const meshRef = useRef();
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -22,6 +22,12 @@ export const TedxModel = () => {
       ref={meshRef}
       object={gltf.scene}
       position={[-1.35, -0.35, 0.6]}
+      Slightly
+      rotate
+      for
+      a
+      better
+      angle
     />
   );
 };
