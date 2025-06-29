@@ -22,15 +22,20 @@ const AboutUs = () => {
   const videoRef = useRef(null);
   const videoContainerRef = useRef(null);
   const aboutUsDivRefs = useRef([]);
+  const StagDivRef = useRef(null);
 
   useGSAP(() => {
-    if (!mainRef.current) return;
-
-    gsap.from(videoContainerRef.current, {
-      y: "100%",
-      duration: 1,
-      onComplete: () => {
-        videoRef.current?.play();
+    gsap.to(videoRef.current, {
+      scale: 1.02,
+      height: "100%",
+      width: "100%",
+      borderRadius: 0,
+      scrollTrigger: {
+        trigger: StagDivRef.current,
+        start: "bottom 70%",
+        end: "bottom top",
+        scrub: 1,
+        pin: true,
       },
     });
 
@@ -68,34 +73,26 @@ const AboutUs = () => {
       ref={mainRef}
       className="flex flex-col justify-center items-center w-full pt-[100px]"
     >
-      <div className="w-full flex flex-col text-white relative p-4">
-        <div className="flex sm:flex-row justify-between items-end gap-2">
-          <div className="font-semibold text-red-600 text-[10vw] sm:text-[5vw] max-sm:-m-2 -mb-5">
-            TEDx
-            <span className="text-white text-3xl sm:text-6xl max-sm:text-[2.5vw]">
-              BIT JAIPUR
-            </span>
-          </div>
-          <div className="mr-0 sm:mr-6 text-base sm:text-lg max-sm:text-[2.5vw] max-sm:mx-1">
-            Where vision meets voice
-          </div>
-        </div>
-
-        <div
-          ref={videoContainerRef}
-          className="gradient mb-4 rounded-2xl sm:rounded-3xl"
-        >
+      <div
+        ref={StagDivRef}
+        className="h-[60vh] w-full flex justify-center items-center text-white text-6xl"
+      >
+        Where vision meets voice
+      </div>
+      <div
+        ref={videoContainerRef}
+        className="w-full flex flex-col text-white relative p-4"
+      >
+        <div className=" mb-4 rounded-2xl sm:rounded-3xl flex justify-center">
           <video
             ref={videoRef}
+            autoPlay
             muted
             loop
             playsInline
-            className="w-full h-[40vh] sm:h-[60vh] md:h-[90vh] object-cover gradient rounded-t-2xl sm:rounded-t-3xl shadow-xl backdrop-blur-xs"
+            className="w-[80vw]  object-cover gradient rounded-3xl shadow-xl backdrop-blur-xs"
             src="http://res.cloudinary.com/dz12pywzs/video/upload/v1750933086/s7v8n1vywgbsszquz216.mov"
           ></video>
-          <button className="bg-white/10 cursor-pointer w-full px-5 py-3 rounded-b-2xl sm:rounded-b-3xl text-white transition-all duration-500 hover:shadow-2xs hover:shadow-red-500">
-            Speaker call
-          </button>
         </div>
       </div>
       <div
