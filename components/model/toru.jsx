@@ -16,7 +16,7 @@ export default function Toru() {
           fgColor="white"
           bgColor="transparent"
           resolution={0.3}
-          characters=" .:-+*=%@#"
+          characters=" TEDX"
         />
         <Knot />
       </Canvas>
