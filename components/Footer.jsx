@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="gradient rounded-2xl md:rounded-3xl shadow-xl backdrop-blur-xs  text-white px-6 py-12 md:px-20 flex flex-col md:flex-row justify-between items-start gap-10"
+      className="m-4 gradient rounded-2xl md:rounded-3xl shadow-xl backdrop-blur-xs  text-white px-6 py-12 md:px-20 flex flex-col md:flex-row justify-between items-start gap-10"
     >
       {/* Left Side */}
       <div className="space-y-4 text-left">
