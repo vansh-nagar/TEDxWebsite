@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 export async function POST(request) {
   try {
+    npm;
     const data = await request.json();
     const { name, email, enquiry } = data;
 

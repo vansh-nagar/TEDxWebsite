@@ -48,8 +48,6 @@ const AboutUs = () => {
       },
     });
 
-    tl.fromTo(modelRef.current, { x: "-100vw" }, { x: "100vw", ease: "none" });
-
     gsap.from(aboutUsDivRefs.current, {
       y: 100,
       opacity: 0,
@@ -75,10 +73,22 @@ const AboutUs = () => {
     >
       <div
         ref={StagDivRef}
-        className="h-[60vh] w-full flex justify-center items-center text-white text-6xl"
+        className="h-[60vh] w-full flex justify-center items-center flex-col gap-3 font-light text-center"
       >
-        Where vision meets voice
+        <div className="  text-white text-[4vw] max-sm:text-2xl ">
+          ✦ Where Vision
+          <span className=" italic m-4 underline font-medium ">
+            ꕤ Meets{" "}
+          </span>{" "}
+          Voice.
+        </div>
+        <div className="text-white">
+          Ideas crafted through clarity, shared through{" "}
+          <span className=" italic">sound</span> — inspiring Jaipur{" "}
+          <span className=" italic font-medium">one</span> voice at a time.
+        </div>
       </div>
+
       <div
         ref={videoContainerRef}
         className="w-full flex flex-col text-white relative p-4"
@@ -90,7 +100,7 @@ const AboutUs = () => {
             muted
             loop
             playsInline
-            className="w-[80vw]  object-cover gradient rounded-3xl shadow-xl backdrop-blur-xs"
+            className="w-[90vw]  object-cover gradient rounded-3xl shadow-xl backdrop-blur-xs"
             src="http://res.cloudinary.com/dz12pywzs/video/upload/v1750933086/s7v8n1vywgbsszquz216.mov"
           ></video>
         </div>
@@ -103,20 +113,7 @@ const AboutUs = () => {
           ref={modelRef}
           className="absolute hidden md:flex h-full w-full items-center justify-center"
           style={{ pointerEvents: "none" }}
-        >
-          <Canvas
-            camera={{ position: [0, 0, 1] }}
-            frameloop="demand"
-            gl={{ powerPreference: "high-performance", antialias: false }}
-            dpr={[1, 1.5]}
-            style={{ width: "100%", height: "100%" }}
-          >
-            <ambientLight intensity={2} />
-            <TedxModel />
-            <Environment preset="sunset" />
-            <AdaptiveDpr pixelated />
-          </Canvas>
-        </div>
+        ></div>
         {aboutUsData.map((item, index) => (
           <AboutUsDiv
             ref={(el) => (aboutUsDivRefs.current[index] = el)}

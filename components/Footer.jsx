@@ -1,5 +1,6 @@
 "use client";
 import {
+  RiFacebookBoxLine,
   RiGithubFill,
   RiInstagramLine,
   RiLinkedinLine,
@@ -40,7 +41,7 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className=" bg-gradient-to-br from-[#1a1a1a] via-[#2c3332] to-[#3a3a3a] rounded-2xl md:rounded-3xl shadow-2xl backdrop-blur-md text-white px-8 py-14 md:px-24 flex flex-col md:flex-row justify-between items-start gap-14 border border-[#232323]/40"
+      className=" gradient mt-20  text-white px-8 p-4 flex flex-col md:flex-row justify-between items-start gap-14 border border-[#232323]/40"
     >
       {/* Left Side */}
       <div className="space-y-6 text-left flex-1">
@@ -86,24 +87,23 @@ const Footer = () => {
             href="mailto:tcontact@tedxbitjaipur.com"
             className="hover:text-red-500 transition-colors duration-200"
             aria-label="Email"
+            target="_blank"
           >
             <RiMailLine />
+          </a>
+          <a
+            href="https://www.facebook.com/people/TEDx-BITJaipur/61575732881377/"
+            className="hover:text-red-500 transition-colors duration-200"
+            aria-label="Email"
+            target="_blank"
+          >
+            <RiFacebookBoxLine />
           </a>
         </div>
         <h3 className="text-xl font-bold mt-8 mb-2 text-red-400 tracking-wide">
           LOCATE US
         </h3>
-        <div className="rounded-lg overflow-hidden shadow-lg border border-[#ede9e0]/10">
-          <iframe
-            title="Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.247740832923!2d75.96451271504414!3d26.95820598310365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dc8e7f7a8f29b%3A0x3a33fdd8818d2e33!2sLNMIIT!5e0!3m2!1sen!2sin!4v1718641472857!5m2!1sen!2sin"
-            width="320"
-            height="160"
-            className="border-0 w-full h-40"
-            allowFullScreen
-            loading="lazy"
-          />
-        </div>
+        <div className="rounded-lg overflow-hidden shadow-lg border border-[#ede9e0]/10"></div>
         <p className="mt-3 text-sm text-gray-300">
           27, Central Road, Malviya Nagar Industrial Area,
           <br />
@@ -118,7 +118,7 @@ const Footer = () => {
             Message Us
           </h2>
           <form
-            className="flex flex-col space-y-6 rounded-xl shadow-lg "
+            className="flex flex-col space-y-6 rounded-xl  "
             onSubmit={handleSubmit}
           >
             <input
@@ -155,13 +155,13 @@ const Footer = () => {
             >
               {loading ? "SENDING..." : "SEND"}
             </button>
-            {success && (
-              <p className="text-green-500 text-sm">
-                Message sent successfully!
-              </p>
-            )}
-            {error && <p className="text-red-500 text-sm">{error}</p>}
           </form>
+          {success && (
+            <p className="text-green-500 text-center text-sm">
+              Message sent successfully!
+            </p>
+          )}
+          {error && <p className="text-red-500 text-center text-sm">{error}</p>}
         </div>
       </div>
     </footer>
