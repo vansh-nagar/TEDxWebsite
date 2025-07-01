@@ -1,17 +1,14 @@
 "use client";
-import React, { useRef } from "react";
-import { Canvas } from "@react-three/fiber";
-import { TedxModel } from "./model/tedxmodes";
-import { Environment, AdaptiveDpr } from "@react-three/drei";
+import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AboutUsDiv from "./ui/aboutUsDiv";
 import { aboutUsData } from "./data/aboutUsData";
 import { useGSAP } from "@gsap/react";
-import Toru from "./model/toru";
 import Benifits from "./benifits";
 import CallToAction from "./callToAction";
 import SocialProof from "./socialProof";
+import { RiArrowDownLine } from "@remixicon/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +20,7 @@ const AboutUs = () => {
   const videoContainerRef = useRef(null);
   const aboutUsDivRefs = useRef([]);
   const StagDivRef = useRef(null);
+  const [ScrollWhere, setScrollWhere] = useState(true);
 
   useGSAP(() => {
     gsap.to(videoRef.current, {
@@ -37,6 +35,9 @@ const AboutUs = () => {
         scrub: 1,
         pin: true,
       },
+      onComplete: () => {
+        videoRef.current.play();
+      },
     });
 
     const tl = gsap.timeline({
@@ -48,34 +49,42 @@ const AboutUs = () => {
       },
     });
 
-    gsap.from(aboutUsDivRefs.current, {
-      y: 100,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: level2Ref.current,
-        start: "top 80%",
-        end: "bottom 20%",
-      },
-    });
-
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
+  // Function to scroll to the bottom of the page
+  const [atBottom, setAtBottom] = React.useState(false);
+
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const isAtBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+      setAtBottom(isAtBottom);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div
       ref={mainRef}
-      className="flex flex-col justify-center items-center w-full pt-[100px]"
+      className="flex relative flex-col justify-center items-center w-full pt-[100px]"
     >
       <div
         ref={StagDivRef}
         className="h-[60vh] w-full flex justify-center items-center flex-col gap-3 font-light text-center"
       >
-        <div className="  text-white text-[4vw] max-sm:text-2xl ">
+        <div className="  text-white text-[4vw] max-sm:text-2xl  ">
           ✦ Where Vision
           <span className=" italic m-4 underline font-medium ">
             ꕤ Meets{" "}
@@ -96,7 +105,6 @@ const AboutUs = () => {
         <div className=" mb-4 rounded-2xl sm:rounded-3xl flex justify-center">
           <video
             ref={videoRef}
-            autoPlay
             muted
             loop
             playsInline
@@ -123,7 +131,7 @@ const AboutUs = () => {
             dv1={item.dv1}
             dv2={item.dv2}
             p={item.p}
-            className={`w-full md:w-[30%] ${index === 1 ? "z-10" : ""}`}
+            className={`w-full md:w-[30%] ${index === 1 ? "z-10" : ""} `}
           />
         ))}
       </div>
@@ -131,6 +139,20 @@ const AboutUs = () => {
       <Benifits />
       <SocialProof />
       <CallToAction />
+      <button
+        onClick={() => {
+          setScrollWhere(!ScrollWhere);
+        }}
+        className="bg-white/50 z-50 fixed right-4 bottom-4 p-4 rounded-full animate-pulse md:hidden"
+        aria-label="Scroll to bottom"
+        type="button"
+      >
+        {ScrollWhere ? (
+          <RiArrowDownLine onClick={scrollToBottom} />
+        ) : (
+          <RiArrowDownLine className="rotate-180" onClick={scrollToTop} />
+        )}
+      </button>
     </div>
   );
 };
