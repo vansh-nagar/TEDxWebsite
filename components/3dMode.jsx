@@ -37,6 +37,9 @@ const AboutUs = () => {
         scrub: 1,
         pin: true,
       },
+      onComplete: () => {
+        videoRef.current.play();
+      },
     });
 
     const tl = gsap.timeline({
@@ -45,19 +48,6 @@ const AboutUs = () => {
         start: "top 80%",
         end: "bottom 20%",
         scrub: 1,
-      },
-    });
-
-    gsap.from(aboutUsDivRefs.current, {
-      y: 100,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: level2Ref.current,
-        start: "top 80%",
-        end: "bottom 20%",
       },
     });
 
@@ -75,7 +65,7 @@ const AboutUs = () => {
         ref={StagDivRef}
         className="h-[60vh] w-full flex justify-center items-center flex-col gap-3 font-light text-center"
       >
-        <div className="  text-white text-[4vw] max-sm:text-2xl ">
+        <div className="  text-white text-[4vw] max-sm:text-2xl  ">
           ✦ Where Vision
           <span className=" italic m-4 underline font-medium ">
             ꕤ Meets{" "}
@@ -96,7 +86,6 @@ const AboutUs = () => {
         <div className=" mb-4 rounded-2xl sm:rounded-3xl flex justify-center">
           <video
             ref={videoRef}
-            autoPlay
             muted
             loop
             playsInline
@@ -123,7 +112,7 @@ const AboutUs = () => {
             dv1={item.dv1}
             dv2={item.dv2}
             p={item.p}
-            className={`w-full md:w-[30%] ${index === 1 ? "z-10" : ""}`}
+            className={`w-full md:w-[30%] ${index === 1 ? "z-10" : ""} `}
           />
         ))}
       </div>

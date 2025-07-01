@@ -67,7 +67,6 @@ const SocialProof = () => {
   const renderStars = (count) => <div className="flex mb-2"></div>;
   // Part 1: First half of testimonials
   const firstHalf = testimonials.slice(0, Math.ceil(testimonials.length / 2));
-  // Part 2: Second half of testimonials
   const secondHalf = testimonials.slice(Math.ceil(testimonials.length / 2));
 
   return (
@@ -99,10 +98,10 @@ const SocialProof = () => {
           </div>
         ))}
       </div>
-      <div className="text-center text-3xl text-white border-t border-b border-double py-4">
+      <div className="text-center text-3xl max-sm:text-xl text-white border-t border-b border-double py-4">
         ꕤ <span className="underline">Inspired</span>? Join us for the next TEDx
         event and experience the{" "}
-        <span className="bg-red-500 px-4 py-2 rounded-md underline decoration-black italic">
+        <span className="bg-red-500 max-sm:py-0.5 max-sm:px-2 px-4 py-2 rounded-md underline decoration-black italic">
           magic
         </span>{" "}
         yourself! ꕤ
