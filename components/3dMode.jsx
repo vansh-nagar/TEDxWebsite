@@ -1,17 +1,14 @@
 "use client";
-import React, { useRef } from "react";
-import { Canvas } from "@react-three/fiber";
-import { TedxModel } from "./model/tedxmodes";
-import { Environment, AdaptiveDpr } from "@react-three/drei";
+import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AboutUsDiv from "./ui/aboutUsDiv";
 import { aboutUsData } from "./data/aboutUsData";
 import { useGSAP } from "@gsap/react";
-import Toru from "./model/toru";
 import Benifits from "./benifits";
 import CallToAction from "./callToAction";
 import SocialProof from "./socialProof";
+import { RiArrowDownLine } from "@remixicon/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +20,7 @@ const AboutUs = () => {
   const videoContainerRef = useRef(null);
   const aboutUsDivRefs = useRef([]);
   const StagDivRef = useRef(null);
+  const [ScrollWhere, setScrollWhere] = useState(true);
 
   useGSAP(() => {
     gsap.to(videoRef.current, {
@@ -56,10 +54,31 @@ const AboutUs = () => {
     };
   }, []);
 
+  // Function to scroll to the bottom of the page
+  const [atBottom, setAtBottom] = React.useState(false);
+
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const isAtBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+      setAtBottom(isAtBottom);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div
       ref={mainRef}
-      className="flex flex-col justify-center items-center w-full pt-[100px]"
+      className="flex relative flex-col justify-center items-center w-full pt-[100px]"
     >
       <div
         ref={StagDivRef}
@@ -120,6 +139,20 @@ const AboutUs = () => {
       <Benifits />
       <SocialProof />
       <CallToAction />
+      <button
+        onClick={() => {
+          setScrollWhere(!ScrollWhere);
+        }}
+        className="bg-white/50 z-50 fixed right-4 bottom-4 p-4 rounded-full animate-pulse md:hidden"
+        aria-label="Scroll to bottom"
+        type="button"
+      >
+        {ScrollWhere ? (
+          <RiArrowDownLine onClick={scrollToBottom} />
+        ) : (
+          <RiArrowDownLine className="rotate-180" onClick={scrollToTop} />
+        )}
+      </button>
     </div>
   );
 };

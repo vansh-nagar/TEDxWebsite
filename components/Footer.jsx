@@ -44,17 +44,17 @@ const Footer = () => {
       className=" gradient mt-20  text-white px-8 p-4 flex flex-col md:flex-row justify-between items-start gap-14 border border-[#232323]/40"
     >
       {/* Left Side */}
-      <div className="space-y-6 text-left flex-1">
-        <div className="text-4xl font-extrabold text-red-500 tracking-tight flex items-center gap-2">
-          TED<span className="text-lg align-super">x</span>
-          <span className="text-white font-bold tracking-widest">
-            BITJAIPUR
+      <div className=" text-left flex-1">
+        <div className="  flex items-center font-bold text-4xl text-white ">
+          <span className="  text-red-500">
+            TED<span className="  align-super text-xs">x</span>
           </span>
+          <span className="  text-white font-semibold">BITJaipur</span>
         </div>
-        <p className="text-base text-gray-300">
+        <p className="text-base text-gray-300 ">
           This independent TEDx event is operated under license from TED.
         </p>
-        <p className="text-xs text-gray-400">©2025 All Rights Reserved</p>
+        <p className="text-xs text-gray-400 mt-4">©2025 All Rights Reserved</p>
         <div className="flex space-x-6 text-2xl mt-4">
           <a
             href="https://www.linkedin.com/company/tedxbitjaipur/"
