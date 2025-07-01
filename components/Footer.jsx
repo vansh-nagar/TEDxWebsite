@@ -29,9 +29,9 @@ const Footer = () => {
     setError("");
     setSuccess(false);
     try {
+      console.log(form);
       await axios.post("/api/contactUs", form);
       setSuccess(true);
-      setForm({ name: "", email: "", enquiry: "" });
     } catch (err) {
       setError("Failed to send message.");
     }
