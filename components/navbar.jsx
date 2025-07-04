@@ -71,12 +71,14 @@ const Navbar = () => {
           ref={box}
           className="w-20 h-20   flex justify-between p-6 items-center sm:top-4 fixed z-50 gradient  md:rounded-3xl shadow-xl backdrop-blur-xs "
         >
-          <div className=" link flex items-center font-bold text-xl text-white opacity-0">
-            <span className=" link text-red-500">
-              TED<span className=" link align-super text-xs">x</span>
-            </span>
-            <span className=" link text-white font-semibold">BITJaipur</span>
-          </div>
+          <a href={`${process.env.BASE_URL}/`} className="cursor-pointer">
+            <div className=" link flex items-center font-bold text-xl text-white opacity-0">
+              <span className=" link text-red-500">
+                TED<span className=" link align-super text-xs">x</span>
+              </span>
+              <span className=" link text-white font-semibold">BITJaipur</span>
+            </div>
+          </a>
           <div></div>
           <div className=" link  md:flex space-x-9 flex justify-center items-center  ">
             {navLinks.map((link) => (
