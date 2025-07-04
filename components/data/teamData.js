@@ -1,7 +1,7 @@
 export const teamData = [
   {
     name: "Daksh Gupta",
-    role: "Licensee",
+    role: "Licensee & Organizer ",
     team: "Organizers",
     img: "http://res.cloudinary.com/dz12pywzs/image/upload/v1750763051/ez0lfms6bmpefi9ioj1v.jpg",
     linkedin: "https://www.linkedin.com/in/dg-guptadaksh/",
@@ -10,7 +10,7 @@ export const teamData = [
   },
   {
     name: "Apoorva Singh",
-    role: "Licensee",
+    role: "Co-Licensee & Co-Organizer",
     team: "Organizers",
     img: "http://res.cloudinary.com/dz12pywzs/image/upload/v1750930983/wv2jitiwacbikqentcqz.jpg",
     linkedin: "https://www.linkedin.com/in/apoorva-singh-ab8113292/",

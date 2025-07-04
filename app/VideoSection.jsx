@@ -3,16 +3,15 @@ import React from "react";
 
 const VideoSection = () => {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden pt-16">
+    <section className="relative w-full min-h-screen overflow-hidden ">
       {/* Background Video */}
       <video
-  className="absolute top-0 left-0 w-full h-full object-contain z-0 bg-black"
-  autoPlay
-  loop
-  muted
-  playsInline
->
-
+        className="absolute top-0 left-0 w-full h-full object-contain z-0 bg-black"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
         <source src="/US.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>

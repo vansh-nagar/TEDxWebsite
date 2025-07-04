@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
-import Navbar from "../components/navbar"; // adjust if path is different
 import { teamData } from "@/components/data/teamData";
+import VideoSection from "../VideoSection";
 
 // Get unique teams for filters
 const teams = ["All", ...new Set(teamData.map((member) => member.team))];
@@ -22,15 +22,15 @@ const OurTeam = () => {
 
   return (
     <>
-      <Navbar />
-      <section id="team" className="w-full px-6 py-20 bg-black text-white">
+      <VideoSection />
+      <section id="team" className="w-full px-6 py-20  text-white">
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-12"
+          className="text-4xl md:text-5xl  text-center mb-12"
         >
-          Our <span className="text-red-500">Team</span>
+          Our - <span className="text-red-500 italic">Team</span>
         </motion.h2>
 
         {/* Filter Buttons */}
@@ -52,21 +52,17 @@ const OurTeam = () => {
 
         {/* Team Cards */}
         <motion.div layout className="max-w-7xl mx-auto">
-          <AnimatePresence mode="wait">
-            {isAll && (
-              <div className="flex flex-wrap justify-center gap-8 mb-10">
-                {licenseeData.map((member) => (
-                  <TeamCard key={member.email} member={member} />
-                ))}
-              </div>
-            )}
+          <div className="flex flex-wrap justify-center gap-8 mb-10">
+            {licenseeData.map((member) => (
+              <TeamCard key={member.email} member={member} />
+            ))}
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {otherData.map((member) => (
-                <TeamCard key={member.email} member={member} />
-              ))}
-            </div>
-          </AnimatePresence>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {otherData.map((member) => (
+              <TeamCard key={member.email} member={member} />
+            ))}
+          </div>
         </motion.div>
       </section>
     </>

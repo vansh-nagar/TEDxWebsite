@@ -83,7 +83,7 @@ const SocialProof = () => {
               alt={t.name}
               className="w-20 h-20 rounded-full object-cover  shadow mb-4"
             />
-            <div className="font-medium underline decoration-wavy decoration-2 decoration-red-600 text-lg text-white mb-0.5">
+            <div className="font-medium  text-lg text-white mb-0.5">
               ✦ {t.name} ✦
             </div>
             <div className="font-medium text-sm text-gray-200 mb-2">
@@ -118,8 +118,8 @@ const SocialProof = () => {
               alt={t.name}
               className="w-20 h-20 rounded-full object-cover  shadow mb-4"
             />
-            <div className=" text-lg text-white mb-0.5 font-medium underline decoration-wavy decoration-2 decoration-red-600 ">
-              {t.name}
+            <div className=" text-lg text-white mb-0.5 font-medium  ">
+              ✦ {t.name} ✦{" "}
             </div>
             <div className="text-sm text-gray-200 mb-2">{t.title}</div>
             {renderStars(t.stars)}
