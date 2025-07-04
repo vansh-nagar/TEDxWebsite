@@ -3,8 +3,9 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
-
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import {
   RiCloseLargeFill,
   RiMenuLine,
@@ -18,6 +19,8 @@ const Navbar = () => {
 
   gsap.registerPlugin(DrawSVGPlugin);
 
+  const router = useRouter();
+
   const box = useRef(null);
   const pica = useRef(null);
 
@@ -27,12 +30,12 @@ const Navbar = () => {
     const tl = gsap.timeline();
     tl.from(box.current, {
       y: -300,
-      duration: 1.5,
+      duration: 1,
       ease: "back.out",
     });
     tl.to(box.current, {
       width: "98%",
-      duration: 1,
+      duration: 0.6,
       ease: "power4.out",
     });
     tl.to(c(".link"), {
@@ -46,10 +49,18 @@ const Navbar = () => {
   });
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "https://www.ted.com/tedx/events/63850", label: "About Us" },
-    { href: "#team", label: "Team" },
-    { href: "#sponsors", label: "Partners" },
+    { href: "#home", label: "Home", link: `${process.env.BASE_URL}/` },
+    {
+      href: "https://www.ted.com/tedx/events/63850",
+      label: "About Us",
+      link: `${process.env.BASE_URL}/AboutUs`,
+    },
+    { href: "#team", label: "Team", link: `${process.env.BASE_URL}/Ourteam` },
+    {
+      href: "#sponsors",
+      label: "Partners",
+      link: `${process.env.BASE_URL}/Partners`,
+    },
     { href: "#footer", label: "Speakers" },
   ];
 
@@ -71,8 +82,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
-                target="_blank"
+                href={link.link}
                 className="hover:text-red-500 link opacity-0 text-white/70 transition-all duration-100 cursor-pointer"
               >
                 {link.label}
