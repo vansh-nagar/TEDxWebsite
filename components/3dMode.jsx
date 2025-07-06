@@ -33,12 +33,17 @@ const AboutUs = () => {
         start: "bottom 70%",
         end: "bottom top",
         scrub: 1,
-        pin: true,
+        pin: window.innerWidth >= 768, // Pin only for md and up
       },
       onComplete: () => {
         videoRef.current.play();
       },
     });
+
+    // Autoplay video for small screens
+    if (window.innerWidth < 768 && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
 
     const tl = gsap.timeline({
       scrollTrigger: {
