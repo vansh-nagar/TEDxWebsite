@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 import { teamData } from "@/components/data/teamData";
 import VideoSection from "../VideoSection";
